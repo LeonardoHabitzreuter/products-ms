@@ -1,0 +1,28 @@
+{
+  "name": "products-ms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc -p ./tsconfig.json",
+    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeonardoHabitzreuter/products-ms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeonardoHabitzreuter/products-ms/issues"
+  },
+  "homepage": "https://github.com/LeonardoHabitzreuter/products-ms#readme",
+  "devDependencies": {
+    "tslint": "^5.20.1"
+  },
+  "dependencies": {
+    "typescript": "^3.7.2"
+  }
+}
