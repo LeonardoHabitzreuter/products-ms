@@ -1,6 +1,8 @@
-import { buildFederatedSchema } from '@apollo/federation'
-// import * as products from './products'
+import ProductResolver from './products/resolvers'
+import { buildFederatedSchema } from '~/lib/buildFederatedSchema'
 
-export const schema = buildFederatedSchema([
-  // products,
-])
+export const getSchema = buildFederatedSchema({
+  resolvers: [
+    ProductResolver
+  ]
+})

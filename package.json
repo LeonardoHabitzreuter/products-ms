@@ -1,31 +1,51 @@
 {
   "name": "products-ms",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
+  "license": "MIT",
   "scripts": {
-    "compile": "tsc -p ./tsconfig.json",
     "lint": "tslint --project tsconfig.json --config tslint.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LeonardoHabitzreuter/products-ms.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LeonardoHabitzreuter/products-ms/issues"
-  },
-  "homepage": "https://github.com/LeonardoHabitzreuter/products-ms#readme",
-  "devDependencies": {
-    "tslint": "^5.20.1"
+    "dev": "nodemon src/index.ts",
+    "test": "jest ./tests/unit/",
+    "test:createdb": "NODE_ENV=test sequelize-cli db:create",
+    "test:integration": "NODE_ENV=test yarn migrate && jest ./tests/integration/ --runInBand",
+    "test:coverage": "yarn test --coverage",
+    "migrate": "sequelize-cli db:migrate",
+    "migrate:rollback": "sequelize-cli db:migrate:undo:all",
+    "seed": "sequelize-cli db:seed:all",
+    "seed:rollback": "sequelize-cli db:seed:undo:all",
+    "build": "tsc --build",
+    "start": "NODE_ENV=production node dist/index.js"
   },
   "dependencies": {
-    "@apollo/federation": "^0.11.2",
-    "apollo-server": "^2.9.13",
+    "@apollo/federation": "^0.11.3",
+    "@types/module-alias": "^2.0.0",
+    "apollo-server": "^2.9.16",
     "dotenv": "^8.2.0",
-    "typescript": "^3.7.2"
+    "fp-ts": "^2.4.3",
+    "graphql": "^14.5.8",
+    "husky": "^4.2.1",
+    "module-alias": "^2.2.2",
+    "pg": "^7.18.1",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^0.17.6",
+    "typeorm": "^0.2.21",
+    "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/graphql": "^14.5.0",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.18",
+    "@types/uuid": "^7.0.2",
+    "apollo-server-testing": "2.9.16",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "sequelize": "^5.21.3",
+    "sequelize-cli": "^5.5.1",
+    "ts-jest": "^25.2.0",
+    "ts-node": "^8.5.4",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.3"
   }
 }

@@ -1,0 +1,25 @@
+version: "3"
+services:
+  db:
+    image: postgres:11.5-alpine
+    container_name: products-db
+    ports:
+      - 5432:5432
+    env_file:
+     - ./.env
+    volumes:
+      - ./volumes/data:/var/lib/postgresql/data
+
+  products:
+    container_name: products
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    ports:
+      - ${PORT}:${PORT}
+    env_file:
+     - ./.env
+    environment:
+     - DATABASE_URL=postgres://postgres:products07@db:5432/products
+    volumes:
+      - ./node_modules:/app/node_modules
