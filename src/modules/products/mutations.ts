@@ -1,13 +1,17 @@
-import uuid from 'uuid/v4'
 import getConnection from '~/lib/db'
 import Product from './model'
 import { ProductInput } from './typeDefs'
 
-export const create = async (product: ProductInput) => {
+export const create = async (input: ProductInput) => {
   const db = await getConnection
 
-  const id = uuid()
-  await db.manager.insert(Product, { ...product, id })
+  await db.manager.insert(Product, input)
 
-  return id
+  const product = await db.manager.findOneOrFail(Product, {
+    where: {
+      name: input.name
+    }
+  })
+
+  return product.id
 }
