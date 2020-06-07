@@ -3,6 +3,7 @@ import 'dotenv/config'
 import createServer from '../../helpers/createServer'
 import '../../helpers/mocks'
 import { clear, closeConnection } from '../../helpers/db'
+import Roles from '~/modules/users/roles'
 
 const CREATE_PRODUCT = /* GraphQL */ `
   mutation createProduct($input: ProductInput!){
@@ -24,7 +25,7 @@ describe('create and query a product', () => {
   afterAll(closeConnection)
 
   test('should create a product and return its data', async () => {
-    const { mutate, query } = await createServer()
+    const { mutate, query } = await createServer({ userId: '1', role: Roles.ADMIN })
     const product = {
       name: 'Product',
       stock: 8
